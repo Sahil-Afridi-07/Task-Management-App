@@ -1,0 +1,15 @@
+.signup-container {
+    animation: slideIn 0.7s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateZ(-50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateZ(0);
+      opacity: 1;
+    }
+  }
+  

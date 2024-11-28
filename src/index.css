@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.container::-webkit-scrollbar{
+  display: none; /* Chrome, Safari, and Edge */
+}
+
+body{
+  background: #5A5959;
+}
+/* In your CSS file */
