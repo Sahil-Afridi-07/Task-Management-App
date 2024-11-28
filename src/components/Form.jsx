@@ -2,29 +2,29 @@ import React, { useEffect, useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import { useFirebase } from "../context/Firebase";
 
-const Form = ({ handleFormData, isFromActive, setIsFromActive, toggleEdit, editContactData }) => {
+const Form = ({ handleFormData, isFromActive, setIsFromActive, toggleEdit, editTaskData }) => {
   const firebase = useFirebase();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
   // Populate form fields when in edit mode
   useEffect(() => {
-    if (toggleEdit && editContactData) {
-      setTitle(editContactData.title || "");
-      setDescription(editContactData.description || "");
+    if (toggleEdit && editTaskData) {
+      setTitle(editTaskData.title || "");
+      setDescription(editTaskData.description || "");
     } else {
       setTitle("");
       setDescription("");
     }
-  }, [toggleEdit, editContactData]);
+  }, [toggleEdit, editTaskData]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (toggleEdit && editContactData) {
-      setTitle(editContactData.title || "");
-      setDescription(editContactData.description || "");
+    if (toggleEdit && editTaskData) {
+      setTitle(editTaskData.title || "");
+      setDescription(editTaskData.description || "");
       // Update task
-      await firebase.handleUpdateTask(editContactData.id, title, description);
+      await firebase.handleUpdateTask(editTaskData.id, title, description);
     } else {
       // Create new task
       await firebase.handleCreateNewTask(title, description);

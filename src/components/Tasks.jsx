@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Contact from './Contact';
+import Task from './Task';
 import Empty from './Empty';
 import { useFirebase } from '../context/Firebase';
 
-const Contacts = ({tasks, handleRemove,setIsFromActive,setEditContactData,setToggleEdit, isFromActive }) => {
+const Tasks = ({tasks, handleRemove,setIsFromActive,setEditTaskData,setToggleEdit, isFromActive }) => {
   const firebase = useFirebase(); // Access Firebase context
 
   const handleDelete = async (id) => {
@@ -13,8 +13,8 @@ const Contacts = ({tasks, handleRemove,setIsFromActive,setEditContactData,setTog
   const handleEdit = (task) => {
     setIsFromActive(true);
     setToggleEdit(true);
-    // Pass the task data to the `setEditContactData` function to update the state in the parent component
-    setEditContactData(task); // Update the edit contact data
+    // Pass the task data to the `setEditTaskData` function to update the state in the parent component
+    setEditTaskData(task); // Update the edit Task data
   };
 
 
@@ -23,7 +23,7 @@ const Contacts = ({tasks, handleRemove,setIsFromActive,setEditContactData,setTog
       {tasks.length > 0 ? (
         <div className={`flex flex-col gap-5 mt-5 relative ${isFromActive && 'blur-sm'}`}>
           {tasks.map((task) => (
-            <Contact
+            <Task
               key={task.id} // Use Firestore document ID as a unique key
               id={task.id}
               handleEdit={handleEdit}
@@ -41,4 +41,4 @@ const Contacts = ({tasks, handleRemove,setIsFromActive,setEditContactData,setTog
   );
 };
 
-export default Contacts;
+export default Tasks;

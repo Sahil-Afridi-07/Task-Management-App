@@ -3,7 +3,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import { MdDeleteSweep } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 
-const Contact = ({title,description,id,handleRemove,handleDelete,handleEdit}) => {
+const Task = ({title,description,id,handleRemove,handleDelete,handleEdit}) => {
   return (
     <div className="min-h-[60px] bg-white rounded-md flex items-center gap-3 p-4 justify-between">
       <div className="flex items-center gap-3">
@@ -21,4 +21,4 @@ const Contact = ({title,description,id,handleRemove,handleDelete,handleEdit}) =>
   );
 };
 
-export default Contact;
+export default Task;

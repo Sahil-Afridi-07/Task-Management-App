@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar';
-import Contacts from './Contacts';
+import Tasks from './Tasks';
 import { IoMdSearch } from "react-icons/io";
 import { FaCirclePlus } from "react-icons/fa6";
 import { useFirebase } from '../context/Firebase';
@@ -27,8 +27,8 @@ const Home = () => {
      const [isFromActive,setIsFromActive]=useState(false);
      const [searchQuery,setSearchQuery]=useState('');
      const [toggleEdit,setToggleEdit]=useState(false);
-     const [editContactData, setEditContactData] = useState(null); // Store contact being edited
-     const [editIndex, setEditIndex] = useState(null); // Store index of the contact being edited
+     const [editTaskData, setEditTaskData] = useState(null); // Store Task being edited
+     const [editIndex, setEditIndex] = useState(null); // Store index of the Task being edited
    
    
      // console.log(searchQuery);
@@ -37,18 +37,18 @@ const Home = () => {
        console.log(filter)
        setTasks(filter)
        setToggleEdit(false);
-       setEditContactData(null);
+       setEditTaskData(null);
      }
      const handleEdit = (task) => {
       setIsFromActive(true);
       setToggleEdit(true);
-      setEditContactData(task); // Assuming you have a state for this
+      setEditTaskData(task); // Assuming you have a state for this
     };
     
      const handlePlus=()=>{
        setIsFromActive(true);
        setToggleEdit(false);
-       setEditContactData(null);
+       setEditTaskData(null);
      }
      const filteredTasks=tasks.filter((item)=>{
        return item.data().title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -65,14 +65,14 @@ const Home = () => {
                type="text"
                value={searchQuery}
                onChange={(e)=>setSearchQuery(e.target.value)}
-               placeholder="Search Contact"
+               placeholder="Search Tasks"
                className="bg-transparent border-2 flex-grow border-white h-10 w-full rounded-md placeholder: pl-10 text-1xl outline-none text-white"
              />
            </div>
            <FaCirclePlus onClick={handlePlus} className="text-5xl cursor-pointer text-white"/>
          </div>
-         <Contacts isFromActive={isFromActive} tasks={filteredTasks} setEditContactData={setEditContactData} setToggleEdit={setToggleEdit} setIsFromActive={setIsFromActive} handleEdit={handleEdit}  handleRemove={handleRemove}/>
-         <Form isFromActive={isFromActive} setIsFromActive={setIsFromActive} toggleEdit={toggleEdit} editContactData={editContactData}/>
+         <Tasks isFromActive={isFromActive} tasks={filteredTasks} setEditTaskData={setEditTaskData} setToggleEdit={setToggleEdit} setIsFromActive={setIsFromActive} handleEdit={handleEdit}  handleRemove={handleRemove}/>
+         <Form isFromActive={isFromActive} setIsFromActive={setIsFromActive} toggleEdit={toggleEdit} editTaskData={editTaskData}/>
          
        </div>
      );
